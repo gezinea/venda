@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VendaProdutoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DtNascimento" Type="datetime" Nullable="false" />
+    <Property Name="CPF" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="telefone" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idEndereco" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Endereco">
+    <Key>
+      <PropertyRef Name="idEndereco" />
+    </Key>
+    <Property Name="idEndereco" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CEP" Type="nvarchar" MaxLength="18" Nullable="false" />
+    <Property Name="Rua" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Quadra" Type="int" Nullable="false" />
+    <Property Name="Bairro" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fornecedores">
+    <Key>
+      <PropertyRef Name="IdFornecedores" />
+    </Key>
+    <Property Name="IdFornecedores" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cnpj" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="idEndereco" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fornecimento">
+    <Key>
+      <PropertyRef Name="CodProduto" />
+    </Key>
+    <Property Name="CodProduto" Type="int" Nullable="false" />
+    <Property Name="IdFornecedores" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="idProduto" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="idProduto" />
+    </Key>
+    <Property Name="idProduto" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="QntEstoque" Type="int" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Preco" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Telefone" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="CPF" Type="char" MaxLength="11" Nullable="false" />
+    <Property Name="DtNacimento" Type="datetime" Nullable="false" />
+    <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="idEndereco" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="senhaUser" Type="varchar" MaxLength="15" />
+    <Property Name="tipoUser" Type="char" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="Venda">
+    <Key>
+      <PropertyRef Name="IdVenda" />
+    </Key>
+    <Property Name="IdVenda" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DtVenda" Type="datetime" Nullable="false" />
+    <Property Name="PreecoVenda" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="QntVenda" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdCliente" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="idProduto" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="Cliente_Venda_fk">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="Venda">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Endereco_Cliente_fk">
+    <End Role="Endereco" Type="Self.Endereco" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="idEndereco" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="idEndereco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Endereco_Fornecedores_fk">
+    <End Role="Endereco" Type="Self.Endereco" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Fornecedores" Type="Self.Fornecedores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="idEndereco" />
+      </Principal>
+      <Dependent Role="Fornecedores">
+        <PropertyRef Name="idEndereco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Endereco_Usuario_fk">
+    <End Role="Endereco" Type="Self.Endereco" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Endereco">
+        <PropertyRef Name="idEndereco" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="idEndereco" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fornecedores_Fornecimento_fk">
+    <End Role="Fornecedores" Type="Self.Fornecedores" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Fornecimento" Type="Self.Fornecimento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fornecedores">
+        <PropertyRef Name="IdFornecedores" />
+      </Principal>
+      <Dependent Role="Fornecimento">
+        <PropertyRef Name="IdFornecedores" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Produto_Fornecimento_fk">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Fornecimento" Type="Self.Fornecimento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="idProduto" />
+      </Principal>
+      <Dependent Role="Fornecimento">
+        <PropertyRef Name="idProduto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Produto_Venda_fk">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+    <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="idProduto" />
+      </Principal>
+      <Dependent Role="Venda">
+        <PropertyRef Name="idProduto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Usuario_Venda_fk">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Venda">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VendaProdutoModelStoreContainer">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Endereco" EntityType="Self.Endereco" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fornecedores" EntityType="Self.Fornecedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fornecimento" EntityType="Self.Fornecimento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venda" EntityType="Self.Venda" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Cliente_Venda_fk" Association="Self.Cliente_Venda_fk">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Venda" EntitySet="Venda" />
+    </AssociationSet>
+    <AssociationSet Name="Endereco_Cliente_fk" Association="Self.Endereco_Cliente_fk">
+      <End Role="Endereco" EntitySet="Endereco" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="Endereco_Fornecedores_fk" Association="Self.Endereco_Fornecedores_fk">
+      <End Role="Endereco" EntitySet="Endereco" />
+      <End Role="Fornecedores" EntitySet="Fornecedores" />
+    </AssociationSet>
+    <AssociationSet Name="Endereco_Usuario_fk" Association="Self.Endereco_Usuario_fk">
+      <End Role="Endereco" EntitySet="Endereco" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="Fornecedores_Fornecimento_fk" Association="Self.Fornecedores_Fornecimento_fk">
+      <End Role="Fornecedores" EntitySet="Fornecedores" />
+      <End Role="Fornecimento" EntitySet="Fornecimento" />
+    </AssociationSet>
+    <AssociationSet Name="Produto_Fornecimento_fk" Association="Self.Produto_Fornecimento_fk">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="Fornecimento" EntitySet="Fornecimento" />
+    </AssociationSet>
+    <AssociationSet Name="Produto_Venda_fk" Association="Self.Produto_Venda_fk">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="Venda" EntitySet="Venda" />
+    </AssociationSet>
+    <AssociationSet Name="Usuario_Venda_fk" Association="Self.Usuario_Venda_fk">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Venda" EntitySet="Venda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

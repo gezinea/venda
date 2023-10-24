@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E697492-0EA8-4CAD-9D2C-F6F1DDFB040B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ErpSigmaVenda</RootNamespace>
+    <AssemblyName>Erp Sigma</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conexao\Cliente.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Context.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Context.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Endereco.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Fornecedores.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Fornecimento.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Produto.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Usuario.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Conexao\Venda.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Auxiliares\AXcliente.cs" />
+    <Compile Include="Auxiliares\AXclienteProd.cs" />
+    <Compile Include="Auxiliares\AXfornecedores.cs" />
+    <Compile Include="Auxiliares\AXproduto.cs" />
+    <Compile Include="Auxiliares\AXusuario.cs" />
+    <Compile Include="Formes\Cad\FrmCadUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Cad\FrmCadUsuario.Designer.cs">
+      <DependentUpon>FrmCadUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Cad\FrmCadProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Cad\FrmCadProduto.Designer.cs">
+      <DependentUpon>FrmCadProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmLogin1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmLogin1.Designer.cs">
+      <DependentUpon>FrmLogin1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Busca\FrmBuscaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Busca\FrmBuscaCliente.Designer.cs">
+      <DependentUpon>FrmBuscaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Cad\FrmCadFornecedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Cad\FrmCadFornecedores.Designer.cs">
+      <DependentUpon>FrmCadFornecedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmNavegacaoPrin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmNavegacaoPrin.Designer.cs">
+      <DependentUpon>FrmNavegacaoPrin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmVenda.Designer.cs">
+      <DependentUpon>FrmVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmProduto.Designer.cs">
+      <DependentUpon>FrmProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmEscolha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmEscolha.Designer.cs">
+      <DependentUpon>FrmEscolha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmCliente.Designer.cs">
+      <DependentUpon>FrmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmFornecedore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmFornecedore.Designer.cs">
+      <DependentUpon>FrmFornecedore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formes\Nav\FrmUsuario.Designer.cs">
+      <DependentUpon>FrmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Persistencia\pBusca.cs" />
+    <Compile Include="Persistencia\pCliente.cs" />
+    <Compile Include="Persistencia\pClienteProduto.cs" />
+    <Compile Include="Persistencia\pFornecedores.cs" />
+    <Compile Include="Persistencia\pProduto.cs" />
+    <Compile Include="Persistencia\pUsuario.cs" />
+    <EmbeddedResource Include="Formes\Cad\FrmCadUsuario.resx">
+      <DependentUpon>FrmCadUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Cad\FrmCadProduto.resx">
+      <DependentUpon>FrmCadProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmLogin1.resx">
+      <DependentUpon>FrmLogin1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Busca\FrmBuscaCliente.resx">
+      <DependentUpon>FrmBuscaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Cad\FrmCadFornecedores.resx">
+      <DependentUpon>FrmCadFornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmNavegacaoPrin.resx">
+      <DependentUpon>FrmNavegacaoPrin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmVenda.resx">
+      <DependentUpon>FrmVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmProduto.resx">
+      <DependentUpon>FrmProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmEscolha.resx">
+      <DependentUpon>FrmEscolha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmCliente.resx">
+      <DependentUpon>FrmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmFornecedore.resx">
+      <DependentUpon>FrmFornecedore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formes\Nav\FrmUsuario.resx">
+      <DependentUpon>FrmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="Conexao\Context.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Context.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Conexao\Context.edmx.diagram">
+      <DependentUpon>Context.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Administrador.datasource" />
+    <None Include="Properties\DataSources\Cliente.datasource" />
+    <None Include="Properties\DataSources\Form1.datasource" />
+    <None Include="Properties\DataSources\Form3.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Cliente.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.dbContext.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Endereco.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Fornecedores.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Fornecimento.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Produto.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Usuario.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.Venda.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.adoNet.VendaProdutoEntities.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Auxiliares.AXcliente.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Auxiliares.AXfornecedores.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Auxiliares.AXproduto.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Auxiliares.AXusuario.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Navegacao.Form1.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\vendaProduto.Properties.Settings.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Conexao\Context.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Conexao\Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Context.edmx</DependentUpon>
+      <LastGenOutput>Context.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\catalog.png" />
+    <None Include="Resources\trash %281%29.png" />
+    <None Include="Resources\acquisition %281%29.png" />
+    <None Include="Resources\edit %281%29.png" />
+    <None Include="Resources\group.png" />
+    <None Include="Resources\customer-service.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
